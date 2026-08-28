@@ -15,6 +15,10 @@ const normalizedNumber = secretNumber.toString();
 
 const askGuess = () => {
   rl.question('Enter 4-digit number: ', (userInput) => {
+    if (typeof userInput !== 'string') {
+      return;
+    }
+
     if (checkIsValidUserInput(userInput)) {
       if (userInput === normalizedNumber) {
         console.log('You win!');
@@ -23,7 +27,7 @@ const askGuess = () => {
         return;
       }
 
-      const result = getBullsAndCows(userInput, normalizedNumber);
+      const result = getBullsAndCows(normalizedNumber, userInput);
       const { bulls, cows } = result;
 
       console.log(`Bulls: ${bulls}, Cows: ${cows}`);
