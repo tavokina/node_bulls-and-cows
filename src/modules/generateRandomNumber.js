@@ -7,7 +7,19 @@
  * @return {number} A random 4-digit number
  */
 function generateRandomNumber() {
-  /* Write your code here */
+  const randomGameNum = new Set();
+
+  while (randomGameNum.size < 4) {
+    const num = Math.floor(Math.random() * 10);
+
+    if (num === 0 && randomGameNum.size === 0) {
+      continue;
+    }
+
+    randomGameNum.add(num);
+  }
+
+  return Number([...randomGameNum].join(''));
 }
 
 module.exports = {
