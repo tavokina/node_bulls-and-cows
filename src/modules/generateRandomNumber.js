@@ -19,7 +19,14 @@ function generateRandomNumber() {
     randomGameNum.add(num);
   }
 
-  return Number([...randomGameNum].join(''));
+  const finalNumber = Number([...randomGameNum].join(''));
+  let finalString = String(finalNumber);
+
+  if (finalString.length < 4) {
+    finalString = finalString.padStart(4, '0');
+  }
+
+  return +finalString;
 }
 
 module.exports = {
