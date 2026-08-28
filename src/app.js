@@ -11,20 +11,22 @@ const rl = readline.createInterface({
 });
 
 const secretNumber = generateRandomNumber();
+const normalizedNumber = secretNumber.toString();
 
 const askGuess = () => {
-  rl.question('Enter 4-digit number', (userInput) => {
+  rl.question('Enter 4-digit number: ', (userInput) => {
     if (checkIsValidUserInput(userInput)) {
-      if (+userInput === secretNumber) {
+      if (userInput === normalizedNumber) {
         console.log('You win!');
         rl.close();
 
         return;
       }
 
-      const result = getBullsAndCows(+userInput, secretNumber);
+      const result = getBullsAndCows(userInput, normalizedNumber);
+      const { bulls, cows } = result;
 
-      console.log(result);
+      console.log(`Bulls: ${bulls}, Cows: ${cows}`);
     } else {
       console.log('Invalid number');
     }
